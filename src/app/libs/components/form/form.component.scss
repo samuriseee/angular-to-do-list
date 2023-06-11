@@ -1,0 +1,49 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  max-height: fit-content;
+  box-sizing: border-box;
+}
+textarea {
+  display:flex;
+  justify-content: center;
+  padding: 5px;
+  vertical-align: middle;
+}
+select {
+  position: relative;
+}
+mat-form-field{
+  position: relative;
+}
+.formInput {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 55px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.modal-footer button {
+  margin-left: 10px;
+}
+

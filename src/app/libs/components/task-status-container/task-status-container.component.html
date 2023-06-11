@@ -1,0 +1,13 @@
+<div class="task-container">
+  <div class="task-header" [style.background]="taskStatus?.color">
+    <div class="task-header__title">
+      {{ taskStatus?.status }}
+    </div>
+    <div class="task-header__count" [style.background]="taskStatus?.color">{{ getTaskStatusLength() }}</div>
+  </div>
+  <div class="task-divider" [style.background]="taskStatus?.color"></div>
+  <div class="task-item">
+    <app-task-card cdkDrag [cdkDragData]="task" class="task-item__card" *ngFor="let task of tasks" [task]="task" (editTask)="getDataFromCardThenEmitToParent($event)"></app-task-card>
+  </div>
+</div>
+

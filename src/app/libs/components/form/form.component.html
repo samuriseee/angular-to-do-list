@@ -1,0 +1,18 @@
+<form [formGroup]="myForm" (submit)="onSubmit()">
+  <label for="title">Title</label>
+  <input id="title" type="text" formControlName="title" class="formInput">
+
+  <label for="description">Description</label>
+  <textarea id="description" formControlName="description" class="formInput"></textarea>
+    <label for="status">Status</label>
+    <select id="status" formControlName="status" class="formInput select">
+      <option *ngFor="let status of taskStatuses" [value]="status">{{status}}</option>
+    </select>
+
+  <div class="modal-footer">
+    <button type="button" (click)="changeModalState()" color="warn">Cancel</button>
+    <button type="submit" color="primary">Save</button>
+  </div>
+</form>
+
+<app-snackbar [message]="snackBarMessage"></app-snackbar>

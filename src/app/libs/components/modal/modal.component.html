@@ -1,0 +1,6 @@
+<div class="overlay" [style.display]="showModal ? 'block' : 'none'" (click)="changeModalState()"></div>
+<div class="modal" [style.display]="showModal? 'block':'none'">
+  <div class="modal-content">
+    <ng-content></ng-content>
+  </div>
+</div>
