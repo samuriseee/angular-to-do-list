@@ -1,18 +1,18 @@
-<form [formGroup]="myForm" (submit)="onSubmit()">
+<form [formGroup]="myForm" (submit)="onSubmit()" class="form">
   <label for="title">Title</label>
-  <input id="title" type="text" formControlName="title" class="formInput">
+  <input id="title" type="text" formControlName="title" class="formInput" required>
 
   <label for="description">Description</label>
-  <textarea id="description" formControlName="description" class="formInput"></textarea>
-    <label for="status">Status</label>
-    <select id="status" formControlName="status" class="formInput select">
-      <option *ngFor="let status of taskStatuses" [value]="status">{{status}}</option>
-    </select>
+  <textarea id="description" formControlName="description" class="formInput" required></textarea>
+
+  <label for="status">Status</label>
+  <select id="status" formControlName="status" class="formInput select" required>
+    <option *ngFor="let status of taskStatuses" [value]="status">{{status}}</option>
+  </select>
 
   <div class="modal-footer">
-    <button type="button" (click)="changeModalState()" color="warn">Cancel</button>
-    <button type="submit" color="primary">Save</button>
+    <button type="button" (click)="changeModalState()" class="cancel-button">Cancel</button>
+    <button type="submit" class="save-button" [disabled]="myForm.invalid">Save</button>
   </div>
 </form>
 
-<app-snackbar [message]="snackBarMessage"></app-snackbar>

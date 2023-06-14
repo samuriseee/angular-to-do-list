@@ -3,7 +3,7 @@ import { Task } from './libs/interface/task';
 import { TaskStatus } from './libs/interface/taskStatus';
 import { TaskService } from './libs/services/task.service';
 import { ModalService } from './libs/services/modal.service';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,6 +12,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class AppComponent implements OnInit {
   tasks: Task[] = [];
+
   groupTasks: any = [
     {
       status: TaskStatus.Todo,
@@ -31,8 +32,16 @@ export class AppComponent implements OnInit {
   constructor(private taskService: TaskService, private modalService: ModalService) {
   }
   ngOnInit(): void {
-    this.tasks = this.taskService.getTasks();
+    this.taskService.getTasks().subscribe((tasks: Task[]) => {
+      this.tasks = tasks;
+    });
+    this.taskService.tasksChange.subscribe((tasks: Task[]) => {
+      this.tasks = tasks;
+      console.log(this.tasks);
+    });
+
   }
+
   get showModalState(): boolean {
     return this.modalService.showModal;
   }
@@ -59,10 +68,40 @@ export class AppComponent implements OnInit {
     this.taskData = task;
     this.changeModalState();
   }
+  deleteTask(task: Task): void {
+    this.taskService.deleteTask(task);
+  }
   onDrop(event: CdkDragDrop<Task[]>): void {
-    const dropedTask = event.item.data;
+    const droppedTask = event.item.data;
     const targetContainer = event.container.data;
-    moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
-    this.taskService.updateTaskStatus(dropedTask, targetContainer);
+
+    if (event.previousContainer === event.container) {
+      if (Array.isArray(targetContainer)) {
+        moveItemInArray(targetContainer, event.previousIndex, event.currentIndex);
+      }
+    } else {
+      if (Array.isArray(event.previousContainer.data) && Array.isArray(targetContainer)) {
+        transferArrayItem(
+          event.previousContainer.data,
+          targetContainer,
+          event.previousIndex,
+          event.currentIndex
+        );
+      }
+      this.taskService.updateTaskStatus(droppedTask, targetContainer);
+    }
+  }
+
+  viewCalendar(): void {
+    this.changeCalendarModalState();
+  }
+  get showCalendarModal(): boolean {
+    return this.modalService.showCalendarModal;
+  }
+  set showCalendarModal(value: boolean) {
+    this.modalService.showCalendarModal = value;
+  }
+  changeCalendarModalState(): void {
+    this.modalService.changeCalendarModalState();
   }
 }

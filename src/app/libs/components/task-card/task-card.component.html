@@ -1,18 +1,22 @@
-<div class="task-item" CdkDrag>
+<div class="task-item">
   <div class="task-item__head">
       <div class="task-item__left">
           <div class="task-item__category">{{ task?.title}}</div>
           <div class="task-item__title">{{ task?.title }}</div>
       </div>
       <div class="task-item__right">
-          <img src="../../../../assets/img/Edit.png" alt="" (click)="EmitDataToParent(task)">
-          <img src="../../../../assets/img/Delete.png" (click)="deleteTask(task)" >
+          <img src="../../../../assets/img/Edit.png" alt="" (click)="openConfirmDialog(task,'edit')">
+          <img src="../../../../assets/img/Delete.png" (click)="openConfirmDialog(task,'delete')" >
       </div>
       </div>
       <div class="task-item__body">
       <div class="task-item__content">{{ task?.description}}</div>
-      <div class="task-item__time">
-          <span>{{ task?.createdAt }}</span> <span>{{ task?.status }}</span>
+      <div class="task-item__time" >
+        <div>
+          <img src="../../../../assets/img/clock.png" alt="">
+          <span>{{ task?.createdAt }}</span>
+        </div>
+        <span>{{ task?.status }}</span>
       </div>
   </div>
 </div>

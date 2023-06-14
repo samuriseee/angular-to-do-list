@@ -1,13 +1,27 @@
 <div class="container">
   <app-header>
+    <button mat-stroked-button (click)="viewCalendar()" class="iconButton">
+      <span> View Calendar</span>
+    </button>
     <button mat-stroked-button (click)="addNewTask()">+ New task</button>
   </app-header>
   <div class="task-container-container" cdkDropListGroup>
-    <app-task-status-container [cdkDropListData]="taskStatus.status"  cdkDropList (cdkDropListDropped)="onDrop($event)" *ngFor="let taskStatus of groupTasks;let idx = index" [taskStatus]="taskStatus" [tasks]="getTaskByStatus(taskStatus.status)" (editTask)="editTask($event)">
+    <app-task-status-container
+    *ngFor="let taskStatus of groupTasks;let idx = index"
+    [cdkDropListData]="taskStatus.status"
+    cdkDropList (cdkDropListDropped)="onDrop($event)"
+    [taskStatus]="taskStatus"
+    [tasks]="getTaskByStatus(taskStatus.status)"
+    (editTask)="editTask($event)"
+    (deleteTask)="deleteTask($event)" >
 
     </app-task-status-container>
   </div>
 </div>
-<app-modal [(showModal)]="showModalState">
+<app-modal [(showModal)]="showModalState" *ngIf="showModalState">
   <app-form [task]="taskData"></app-form>
 </app-modal>
+<app-modal [(showModal)]="showCalendarModal" *ngIf="showCalendarModal">
+  <app-task-calendar></app-task-calendar>
+</app-modal>
+

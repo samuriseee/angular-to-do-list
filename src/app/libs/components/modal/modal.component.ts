@@ -15,8 +15,7 @@ export class ModalComponent {
   set showModalState(value: boolean) {
     this.modalService.showModal = value;
   }
-  changeModalState(): void {
-    this.modalService.changeModalState();
+  turnOffModal(): void {
+    this.modalService.turnOffModal();
   }
-
 }

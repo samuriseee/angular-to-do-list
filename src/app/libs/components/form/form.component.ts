@@ -6,6 +6,7 @@ import { TaskStatus } from '../../interface/taskStatus';
 import { TaskService } from '../../services/task.service';
 import { ModalService } from '../../services/modal.service';
 import { SnackbarService } from '../../services/snackbar.service';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -46,8 +47,8 @@ export class FormComponent implements OnInit, OnChanges {
   changeModalState(): void {
     this.modalService.changeModalState();
   }
-  showSnackbar(message: string): void {
-    this.snackbar.showSnackBar(message, '');
+  showSnackbar(message: string,action: string,backgroundColor:string): void {
+    this.snackbar.showSnackBar(message,action,backgroundColor);
   }
   onSubmit(): void {
     const { title, description, status } = this.myForm.value;
@@ -61,7 +62,7 @@ export class FormComponent implements OnInit, OnChanges {
         status
       };
       this.taskService.updateTask(updatedTask);
-      this.showSnackbar('Task updated successfully');
+      this.showSnackbar('Task updated successfully','Close','#3BC057');
     } else {
       const newTask: Task = {
         id: Date.now(),
@@ -71,7 +72,7 @@ export class FormComponent implements OnInit, OnChanges {
         createdAt: this.taskService.formatDate(new Date())
       };
       this.taskService.addTask(newTask);
-      this.showSnackbar('Task added successfully');
+      this.showSnackbar('Task added successfully','Close','#3BC057');
     }
     this.changeModalState();
     this.myForm.reset();

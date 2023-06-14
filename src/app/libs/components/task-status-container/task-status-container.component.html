@@ -7,7 +7,8 @@
   </div>
   <div class="task-divider" [style.background]="taskStatus?.color"></div>
   <div class="task-item">
-    <app-task-card cdkDrag [cdkDragData]="task" class="task-item__card" *ngFor="let task of tasks" [task]="task" (editTask)="getDataFromCardThenEmitToParent($event)"></app-task-card>
+
+      <app-task-card cdkDrag [cdkDragData]="task" class="task-item__card" *ngFor="let task of tasks" [task]="task" (editTask)="EditTask($event)" (deleteTask)="DeleteTask($event)"></app-task-card>
   </div>
 </div>
 

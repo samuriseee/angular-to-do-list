@@ -1,11 +1,14 @@
-import { Component, Input } from '@angular/core';
-import { SnackbarService } from '../../services/snackbar.service';
+import { Component, Inject } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-snackbar',
   templateUrl: './snackbar.component.html',
   styleUrls: ['./snackbar.component.scss']
 })
 export class SnackbarComponent {
-  @Input() message: string = '';
+  constructor(@Inject(MatSnackBar) public snackBar: MatSnackBar) { }
 
+  dismissSnackbar(): void {
+    // Dismiss the snackbar
+  }
 }
