@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChange } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Task } from './libs/interface/task';
 import { TaskStatus } from './libs/interface/taskStatus';
 import { TaskService } from './libs/services/task.service';
@@ -37,7 +37,6 @@ export class AppComponent implements OnInit {
     });
     this.taskService.tasksChange.subscribe((tasks: Task[]) => {
       this.tasks = tasks;
-      console.log(this.tasks);
     });
 
   }

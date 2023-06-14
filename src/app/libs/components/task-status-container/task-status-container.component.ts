@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task } from '../../interface/task';
 import { TaskStatus } from '../../interface/taskStatus';
 import { TaskService } from 'src/app/libs/services/task.service';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-task-status-container',

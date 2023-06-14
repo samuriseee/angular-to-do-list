@@ -1,6 +1,5 @@
-import { Component, Output, EventEmitter, ViewChild, ElementRef, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component,Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { trigger, state, style, transition } from '@angular/animations';
 import { Task } from '../../interface/task';
 import { TaskStatus } from '../../interface/taskStatus';
 import { TaskService } from '../../services/task.service';
